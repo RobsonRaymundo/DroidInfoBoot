@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Info Boot</string>
+    <string name="txt_tela_Config">Tela de Configuração</string>
+    <string name="tit_sinteseVoz">Síntese de Voz</string>
+    <string name="sum_sinteseVoz">Ativar a síntese de Voz do Google informando que o dispositivo foi reiniciado?</string>
+    <string name="quietSum">Não pertube entre as horas abaixo</string>
+    <string name="quietHours">Não perturbe</string>
+    <string name="startTime">Hora inicial</string>
+    <string name="stopTime">Hora final</string>
+    <string name="set">OK</string>
+    <string name="cancel">Cancelar</string>
 </resources>

@@ -4,7 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
@@ -20,16 +24,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.prefs.Preferences;
 
 /**
  * Created by Robson on 22/09/2017.
  */
+
 
 public class DroidAlertDialogActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
     private Context context;
     private EditText lv_boots;
     private Button btnFechar;
+    private Button btnConfigurar;
     private boolean exibeAlert;
 
 
@@ -98,6 +105,18 @@ public class DroidAlertDialogActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnConfigurar = (Button) findViewById(R.id.btnConfigurar);
+
+        btnConfigurar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, DroidPreferenceActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
+
     }
 
     @Override
@@ -119,4 +138,6 @@ public class DroidAlertDialogActivity extends AppCompatActivity {
     private String ListaDadosBoots() {
         return DroidPreferences.GetString(context, "dataHoraAtual");
     }
+
+
 }

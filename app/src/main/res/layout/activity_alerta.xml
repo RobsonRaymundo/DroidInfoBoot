@@ -2,49 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_gray"
     android:orientation="vertical"
-    android:padding="10dp"
     android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/color_black"
+        android:padding="15dp"
+        android:text="REINICIALIZAÇÕES"
+        android:textAlignment="center"
+        android:textColor="@color/color_cyano"
+        android:textSize="19sp" />
 
     <LinearLayout
         android:id="@+id/layInicial"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:layout_weight="0.90"
+        android:layout_gravity="center"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="20dp"
-            android:text="Dados das reinicializações"
-            android:textColor="@color/colorPrimary"
-            android:textSize="19sp" />
 
         <EditText
             android:id="@+id/lv_boots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_white"
             android:ems="10"
-            android:textSize="17sp"
+            android:text="data"
+            android:textAlignment="center"
             android:focusable="false"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textSize="17sp" />
 
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btnFechar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="FECHAR"
-        android:textColor="@color/color_white"
-        android:textSize="15sp" />
+        android:layout_marginBottom="60px"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnConfigurar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_black"
+            android:text="CONFIGURAR"
+            android:textColor="@color/color_cyano"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnFechar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_black"
+            android:text="FECHAR"
+            android:textColor="@color/color_cyano"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

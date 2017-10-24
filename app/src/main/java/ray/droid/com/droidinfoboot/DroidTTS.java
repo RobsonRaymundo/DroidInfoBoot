@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class DroidTTS extends Service implements TextToSpeech.OnInitListener {
     public static boolean VozDispositivoReiniciado;
-    public static boolean VozBateriaCarregada;
     private TextToSpeech tts;
     private Context context;
 
@@ -27,7 +26,9 @@ public class DroidTTS extends Service implements TextToSpeech.OnInitListener {
 
     @Override
     public void onInit(int i) {
-        VozDispositivoReiniciado();
+        if (!DroidCommon.NaoPertube(context)) {
+            VozDispositivoReiniciado();
+        }
     }
 
     @Override
@@ -50,15 +51,11 @@ public class DroidTTS extends Service implements TextToSpeech.OnInitListener {
 
     public void VozDispositivoReiniciado() {
         VozDispositivoReiniciado = false;
-        tts.speak("O dispositivo foi reiniciado!", TextToSpeech.QUEUE_FLUSH, null);
-        DroidCommon.TimeSleep(4000);
+        if (DroidCommon.PreferenceSinteseVoz(context)) {
+            tts.speak("O dispositivo foi reiniciado!", TextToSpeech.QUEUE_FLUSH, null);
+            DroidCommon.TimeSleep(4000);
+        }
         stopSelf();
     }
 
-    public void VozBateriaCarregada() {
-        VozBateriaCarregada = false;
-        tts.speak("Bateria carregada, você já pode desconectar do carregador.", TextToSpeech.QUEUE_FLUSH, null);
-        DroidCommon.TimeSleep(6000);
-        stopSelf();
-    }
 }

@@ -41,7 +41,7 @@ public class DroidCommon {
 
     public static boolean NaoPertube(Context context) {
 
-        boolean informarBateriaCarregada = true;
+        boolean naoPertube = false;
         try {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             boolean naoPertubeAtivado = sp.getBoolean("quiet", false);
@@ -62,21 +62,56 @@ public class DroidCommon {
                 int stopMinute = Integer.parseInt(stopTime.split("[:]+")[1]);
 
                 if (startHour < stopHour && currentHour > startHour && currentHour < stopHour)
-                    informarBateriaCarregada = false;
+                    naoPertube = true;
                 else if (startHour > stopHour && (currentHour > startHour || currentHour < stopHour))
-                    informarBateriaCarregada = false;
+                    naoPertube = true;
                 else if (currentHour == startHour && currentMinute >= startMinute)
-                    informarBateriaCarregada = false;
+                    naoPertube = true;
                 else if (currentHour == stopHour && currentMinute <= stopMinute)
-                    informarBateriaCarregada = false;
+                    naoPertube = true;
 
-                return informarBateriaCarregada;
+                return naoPertube;
             }
         } catch (Exception ex) {
-            Log.d("DroidInfoBattery", ex.getMessage());
+            Log.d("DroidInfoBoot", ex.getMessage());
         }
-        return informarBateriaCarregada;
+        return naoPertube;
     }
+
+
+    public static String handleTime(Context context, String time) {
+        String[] timeParts = time.split(":");
+        int lastHour = Integer.parseInt(timeParts[0]);
+        int lastMinute = Integer.parseInt(timeParts[1]);
+
+        boolean is24HourFormat = DateFormat.is24HourFormat(context);
+
+        if (is24HourFormat) {
+            return ((lastHour < 10) ? "0" : "")
+                    + Integer.toString(lastHour)
+                    + ":" + ((lastMinute < 10) ? "0" : "")
+                    + Integer.toString(lastMinute);
+        } else {
+            int myHour = lastHour % 12;
+            return ((myHour == 0) ? "12" : ((myHour < 10) ? "0" : "") + Integer.toString(myHour))
+                    + ":" + ((lastMinute < 10) ? "0" : "")
+                    + Integer.toString(lastMinute)
+                    + ((lastHour >= 12) ? " PM" : " AM");
+        }
+    }
+
+    public static boolean PreferenceSinteseVoz(final Context context) {
+        boolean spf = false;
+        try {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+            spf = sp.getBoolean("key_sinteseVoz", true);
+        } catch (Exception ex) {
+            Log.d("DroidInfoBoot", ex.getMessage());
+        }
+        return spf;
+    }
+
+
 
 
 

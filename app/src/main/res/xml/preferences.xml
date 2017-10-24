@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="telaConfig"
+        android:title="@string/txt_tela_Config">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="key_sinteseVoz"
+            android:summary="@string/sum_sinteseVoz"
+            android:title="@string/tit_sinteseVoz"></SwitchPreference>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="key_sinteseVoz"
+            android:key="quiet"
+            android:summary="@string/quietSum"
+            android:title="@string/quietHours" />
+        <ray.droid.com.droidinfoboot.DroidTime
+            android:defaultValue="23:00"
+            android:dependency="quiet"
+            android:key="startTime"
+            android:showDefault="true"
+            android:title="@string/startTime" />
+        <ray.droid.com.droidinfoboot.DroidTime
+            android:defaultValue="09:00"
+            android:dependency="quiet"
+            android:key="stopTime"
+            android:showDefault="true"
+            android:title="@string/stopTime" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
